@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include <iomanip>
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -25,6 +26,7 @@ int main(int argc, char **argv)
     int g = argc > 4 ? atoi(argv[4]) : 0;
     int warmups = argc > 5 ? atoi(argv[5]) : 5;
     int runs = argc > 6 ? atoi(argv[6]) : 5;
+    bool softwareCounter = argc > 7 && string(argv[7]) == "software";
 
     if(g != 0 && g != 1 && g != 2 && g != 4 && g != 8 && g != 16 && g != 32)
     {
@@ -47,7 +49,7 @@ int main(int argc, char **argv)
         input[i] = nextRandom(state) < threshold;
     }
 
-    BiSp2DResult result = runBiSp2D(input, rows, cols, sparsity, g, warmups, runs);
+    BiSp2DResult result = runBiSp2D(input, rows, cols, sparsity, g, warmups, runs, softwareCounter);
 
     cout << fixed << setprecision(3);
     cout << "Matrix: " << rows << " x " << cols << '\n';
@@ -60,7 +62,9 @@ int main(int argc, char **argv)
     {
         cout << "Build BaSC: grouped, g=" << g << '\n';
     }
-    cout << "BaSC-GEMM: 4x2 symmetric, native __popcll(), zero skip "
+    cout << "BaSC-GEMM: 4x2 symmetric, "
+         << (softwareCounter ? "software single-bit counter" : "native __popcll()")
+         << ", zero skip "
          << (sparsity > 99.0 ? "enabled" : "disabled") << '\n';
     cout << "H2D: " << result.timing.h2dMs << " ms\n";
     cout << "Build BaSC: " << result.timing.buildMs << " ms\n";

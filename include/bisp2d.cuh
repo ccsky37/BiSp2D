@@ -24,4 +24,5 @@ BiSp2DResult runBiSp2D(
     double sparsity,
     int g,
     int warmups,
-    int runs);
+    int runs,
+    bool softwareCounter = false);

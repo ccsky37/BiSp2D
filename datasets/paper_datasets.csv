@@ -1,0 +1,10 @@
+dataset,instances,features,sparsity_percent,reference,source_url
+Amazon Fashion,2035520,512,99.76,Amazon Reviews 2023,https://amazon-reviews-2023.github.io/main.html
+Beauty & Personal Care,2000000,1024,99.66,Amazon Reviews 2023,https://amazon-reviews-2023.github.io/main.html
+"Clothing, Shoes & Jewelry",1516928,2048,99.68,Amazon Reviews 2023,https://amazon-reviews-2023.github.io/main.html
+Amazon Subscription Boxes,15264,128,99.18,Amazon Reviews 2023,https://amazon-reviews-2023.github.io/main.html
+Appliances,89664,160,99.38,Amazon Reviews 2023,https://amazon-reviews-2023.github.io/main.html
+Beauty & Personal Care (meta),926048,704,99.86,Amazon Reviews 2023,https://amazon-reviews-2023.github.io/main.html
+Criteo,200000,224,88.39,Criteo Display Advertising Challenge,https://ailab.criteo.com/ressources/
+MSWeb,37728,288,98.95,Anonymous Microsoft Web Data,https://kdd.ics.uci.edu/databases/msweb/msweb.html
+MovieLens,50000,2000,99.71,MovieLens,https://grouplens.org/datasets/movielens/
