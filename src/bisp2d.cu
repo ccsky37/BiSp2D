@@ -160,28 +160,9 @@ static void launchBuildBaSC(
     }
 }
 
-__device__ __forceinline__ uint64_t clearLowestBit(uint64_t value)
-{
-    uint64_t next = value - 1;
-    asm volatile("and.b64 %0, %0, %1;" : "+l"(value) : "l"(next));
-    return value;
-}
-
-template<bool Software>
 __device__ __forceinline__ int countBits(uint64_t value)
 {
-    if constexpr (!Software)
-    {
-        return __popcll(value);
-    }
-
-    int count = 0;
-    while(value)
-    {
-        value = clearLowestBit(value);
-        ++count;
-    }
-    return count;
+    return __popcll(value);
 }
 
 __device__ __forceinline__ uint64_t wordAt(ulonglong4 value, int lane)
@@ -258,7 +239,7 @@ __device__ __forceinline__ void loadTile(
     }
 }
 
-template<bool SkipZero, bool Software>
+template<bool SkipZero>
 __device__ __forceinline__ void computeTile(
     uint threadRow,
     uint threadCol,
@@ -294,7 +275,7 @@ __device__ __forceinline__ void computeTile(
             #pragma unroll
             for(int j = 0; j < 2; ++j)
             {
-                results[i * 2 + j] += countBits<Software>(leftValues[i] & rightValues[j]);
+                results[i * 2 + j] += countBits(leftValues[i] & rightValues[j]);
             }
         }
     }
@@ -342,7 +323,7 @@ __device__ __forceinline__ void storeResult(
     }
 }
 
-template<bool CheckColumn, bool SkipZero, bool Software>
+template<bool CheckColumn, bool SkipZero>
 __global__ __launch_bounds__(128) void bascGemmKernel(
     int packedRows,
     int groupsPerRow,
@@ -374,7 +355,7 @@ __global__ __launch_bounds__(128) void bascGemmKernel(
 
         if(!skipThread)
         {
-            computeTile<SkipZero, Software>(threadRow, threadCol, left, right, results);
+            computeTile<SkipZero>(threadRow, threadCol, left, right, results);
         }
         __syncthreads();
     }
@@ -386,7 +367,7 @@ __global__ __launch_bounds__(128) void bascGemmKernel(
 
         if(!skipThread)
         {
-            computeTile<SkipZero, Software>(threadRow, threadCol, left, right, results);
+            computeTile<SkipZero>(threadRow, threadCol, left, right, results);
         }
         __syncthreads();
     }
@@ -411,7 +392,7 @@ static void launchBaSCGemm(
     int cols,
     const uint64_t *basc,
     uint32_t *output,
-    bool sparseSoftware,
+    bool skipZero,
     cudaStream_t stream)
 {
     int tileBlocks = (cols + 31) / 32;
@@ -420,26 +401,26 @@ static void launchBaSCGemm(
     bool checkColumn = cols % 32 != 0;
     const ulonglong4 *vectorizedBaSC = reinterpret_cast<const ulonglong4 *>(basc);
 
-    if(sparseSoftware)
+    if(skipZero)
     {
         if(checkColumn)
         {
-            bascGemmKernel<true, true, true><<<grid, block, 0, stream>>>(packedRows, groupsPerRow, cols, vectorizedBaSC, output);
+            bascGemmKernel<true, true><<<grid, block, 0, stream>>>(packedRows, groupsPerRow, cols, vectorizedBaSC, output);
         }
         else
         {
-            bascGemmKernel<false, true, true><<<grid, block, 0, stream>>>(packedRows, groupsPerRow, cols, vectorizedBaSC, output);
+            bascGemmKernel<false, true><<<grid, block, 0, stream>>>(packedRows, groupsPerRow, cols, vectorizedBaSC, output);
         }
     }
     else
     {
         if(checkColumn)
         {
-            bascGemmKernel<true, false, false><<<grid, block, 0, stream>>>(packedRows, groupsPerRow, cols, vectorizedBaSC, output);
+            bascGemmKernel<true, false><<<grid, block, 0, stream>>>(packedRows, groupsPerRow, cols, vectorizedBaSC, output);
         }
         else
         {
-            bascGemmKernel<false, false, false><<<grid, block, 0, stream>>>(packedRows, groupsPerRow, cols, vectorizedBaSC, output);
+            bascGemmKernel<false, false><<<grid, block, 0, stream>>>(packedRows, groupsPerRow, cols, vectorizedBaSC, output);
         }
     }
 }
@@ -461,7 +442,7 @@ static IterationTiming runOnce(
     int packedRows,
     int groupsPerRow,
     int g,
-    bool sparseSoftware,
+    bool skipZero,
     int8_t *dense,
     uint64_t *basc,
     uint32_t *output,
@@ -509,7 +490,7 @@ static IterationTiming runOnce(
     }
     checkCuda(cudaEventRecord(allCopiesDone, phaseStream));
     checkCuda(cudaEventRecord(gemmStart, mainStream));
-    launchBaSCGemm(packedRows, groupsPerRow, cols, basc, output, sparseSoftware, mainStream);
+    launchBaSCGemm(packedRows, groupsPerRow, cols, basc, output, skipZero, mainStream);
     checkCuda(cudaEventRecord(gemmDone, mainStream));
     checkCuda(cudaEventRecord(stop, mainStream));
     checkCuda(cudaEventSynchronize(stop));
@@ -577,7 +558,7 @@ BiSp2DResult runBiSp2D(
     int paddedCols = (cols + 3) / 4 * 4;
     int groupsPerRow = paddedCols / 4;
     int streamsCount = min(maxStreams, packedRows);
-    bool sparseSoftware = sparsity > 99.0;
+    bool skipZero = sparsity > 99.0;
 
     int8_t *dense = nullptr;
     uint64_t *basc = nullptr;
@@ -622,7 +603,7 @@ BiSp2DResult runBiSp2D(
 
     for(int i = 0; i < warmups; ++i)
     {
-        runOnce(input, rows, cols, paddedCols, packedRows, groupsPerRow, g, sparseSoftware,
+        runOnce(input, rows, cols, paddedCols, packedRows, groupsPerRow, g, skipZero,
                 dense, basc, output, streamsCount, streams, mainStream, phaseStream,
                 start, allCopiesDone, gemmStart, gemmDone, stop,
                 copyStart, copyDone, buildStart, buildDone);
@@ -631,7 +612,7 @@ BiSp2DResult runBiSp2D(
     BiSp2DTiming mean{};
     for(int i = 0; i < runs; ++i)
     {
-        IterationTiming value = runOnce(input, rows, cols, paddedCols, packedRows, groupsPerRow, g, sparseSoftware,
+        IterationTiming value = runOnce(input, rows, cols, paddedCols, packedRows, groupsPerRow, g, skipZero,
                                         dense, basc, output, streamsCount, streams, mainStream, phaseStream,
                                         start, allCopiesDone, gemmStart, gemmDone, stop,
                                         copyStart, copyDone, buildStart, buildDone);

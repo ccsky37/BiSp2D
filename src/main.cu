@@ -60,12 +60,13 @@ int main(int argc, char **argv)
     {
         cout << "Build BaSC: grouped, g=" << g << '\n';
     }
-    cout << "BaSC-GEMM: 4x2 symmetric, "
-         << (sparsity > 99.0 ? "software SBC" : "native __popcll()") << '\n';
+    cout << "BaSC-GEMM: 4x2 symmetric, native __popcll(), zero skip "
+         << (sparsity > 99.0 ? "enabled" : "disabled") << '\n';
     cout << "H2D: " << result.timing.h2dMs << " ms\n";
     cout << "Build BaSC: " << result.timing.buildMs << " ms\n";
     cout << "H2D + Build BaSC: " << result.timing.preparationMs << " ms\n";
     cout << "BaSC-GEMM: " << result.timing.gemmMs << " ms\n";
+    cout << "Device-side Work: " << result.timing.buildMs + result.timing.gemmMs << " ms\n";
     cout << "GPU Total: " << result.timing.totalMs << " ms\n";
     cout << "Validation: " << (result.valid ? "PASS" : "FAIL") << '\n';
 
