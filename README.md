@@ -30,7 +30,7 @@ Requirements:
 make
 ```
 
-NVCC compiles for the GPU visible on the current system.
+The default build targets `sm_80`.
 
 ## Run
 
