@@ -2,4 +2,4 @@
 set -e
 
 make -j
-./build/bisp2d "$@"
+"${PYTHON:-python3}" bench.py "$@"

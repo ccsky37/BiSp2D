@@ -6,9 +6,9 @@ import sys
 from pathlib import Path
 
 
-root = Path(__file__).resolve().parents[1]
+root = Path(__file__).resolve().parent
 binary = root / "build" / "bisp2d"
-datasets = root / "datasets" / "paper_datasets.csv"
+datasets = root / "datasets.csv"
 warmups = sys.argv[1] if len(sys.argv) > 1 else "5"
 runs = sys.argv[2] if len(sys.argv) > 2 else "5"
 

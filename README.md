@@ -6,7 +6,7 @@ This repository contains only the BiSp2D implementation and its random-input ben
 
 ## Dataset configurations
 
-[`datasets/paper_datasets.csv`](datasets/paper_datasets.csv) contains the names, dimensions, and sparsity levels of the nine datasets reported in the paper. The included benchmark does not redistribute or load the original datasets. It generates binary random input with a fixed seed and the corresponding dimensions and sparsity, so the dataset names identify paper-scale configurations rather than copies of the real data.
+[`datasets.csv`](datasets.csv) contains the names, dimensions, and sparsity levels of the nine datasets reported in the paper. The included benchmark does not redistribute or load the original datasets. It generates binary random input with a fixed seed and the corresponding dimensions and sparsity, so the dataset names identify paper-scale configurations rather than copies of the real data.
 
 The original datasets can be obtained from the sources cited in the paper:
 
@@ -27,21 +27,23 @@ Requirements:
 - Python 3 for the paper-scale table script
 
 ```bash
-make ARCH=80
+make
 ```
 
-`ARCH=80` targets A100. Set `ARCH` to the compute capability of another GPU when needed.
+NVCC compiles for the GPU visible on the current system.
 
 ## Run
 
 ```bash
-./run.sh [rows] [cols] [sparsity_percent] [g] [warmups] [runs] [counter]
+./run.sh 5 5
 ```
 
-The default command is:
+The two arguments are the warm-up and measured-run counts. The script builds BiSp2D, generates all nine random binary matrices listed in `datasets.csv`, and prints one Markdown table.
+
+To run one custom matrix configuration, invoke the executable directly:
 
 ```bash
-./run.sh 20000 4096 90 0 5 5 native
+./build/bisp2d [rows] [cols] [sparsity_percent] [g] [warmups] [runs] [counter]
 ```
 
 `g=0` selects the default warp-based BaSC builder. Values `1`, `2`, `4`, `8`, `16`, and `32` select the grouped builder with the corresponding sub-vector group size.
@@ -49,16 +51,6 @@ The default command is:
 The default `counter=native` path uses `__popcll()`. For sparsity greater than 99%, it also skips all-zero operand groups. `counter=software` retains the data-dependent software single-bit counter while using the same sparsity-controlled zero-skipping rule.
 
 The reported GPU total covers H2D transfer, BaSC construction, and BaSC-GEMM. Random input generation and result validation are excluded from timing.
-
-## Paper-scale random benchmark
-
-Run every configuration from `datasets/paper_datasets.csv` and print one Markdown table:
-
-```bash
-ARCH=80 ./run_paper_table.sh 5 5
-```
-
-The two optional arguments are the warm-up and measured-run counts.
 
 ## A100 results
 
