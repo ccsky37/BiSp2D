@@ -54,7 +54,7 @@ The reported GPU total covers H2D transfer, BaSC construction, and BaSC-GEMM. Ra
 
 ## A100 results
 
-NVIDIA A100 PCIe 40 GB, CUDA 12.4, `g=0`, five warm-up runs, and five measured runs:
+NVIDIA A100 PCIe 40 GB, CUDA 12.4, `g=4`, five warm-up runs, and five measured runs:
 
 | Dataset | Instances | Features | Sparsity | H2D (ms) | Device-side Work (ms) | Total (ms) |
 |---|---:|---:|---:|---:|---:|---:|
