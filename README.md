@@ -1,60 +1,72 @@
 # BiSp2D
 
-BiSp2D constructs the exact co-occurrence matrix `V^T V` for a binary incidence matrix on NVIDIA GPUs. The input is compressed into a 64-bit BaSC representation and processed by a symmetric BaSC-GEMM kernel.
+GPU-accelerated co-occurrence matrix construction for binary incidence matrices.
 
-This repository contains only the BiSp2D implementation and its random-input benchmark. External baselines and paper-specific experiment scripts are not included.
+Given a binary matrix `V` with instances as rows and features as columns, BiSp2D computes the exact counts in `C = V^T V`. It packs the input into the 64-bit **BaSC** format and evaluates column intersections with **BaSC-GEMM**, using tiled, vectorized access and symmetric output computation.
 
-## Dataset configurations
+## Performance
 
-[`datasets.csv`](datasets.csv) contains the names, dimensions, and sparsity levels of the nine datasets reported in the paper. The included benchmark does not redistribute or load the original datasets. It generates binary random input with a fixed seed and the corresponding dimensions and sparsity, so the dataset names identify paper-scale configurations rather than copies of the real data.
+### NVIDIA A100: nine dataset configurations
 
-The original datasets can be obtained from the sources cited in the paper:
+Total time includes H2D, GPU format preparation and computation. Bars show the mean of five runs with sample standard deviation. Lower is better; panels use independent scales.
 
-- [Amazon Reviews 2023](https://amazon-reviews-2023.github.io/main.html)
-- [Criteo AI Lab datasets](https://ailab.criteo.com/ressources/)
-- [Anonymous Microsoft Web Data](https://kdd.ics.uci.edu/databases/msweb/msweb.html)
-- [MovieLens](https://grouplens.org/datasets/movielens/)
+![A100 total latency for BiSp2D, cuSPARSE, cuBLASLt and CUTLASS across nine dataset configurations](docs/images/a100_comparison.png)
 
-Applications using real data can preprocess it into a row-major `int8_t` binary matrix and call `runBiSp2D()` directly.
+BiSp2D achieves **1.18–1.70×** speedup over the fastest baseline among cuBLASLt, CUTLASS and cuSPARSE across these nine configurations.
 
-## Build
+### Tesla P100: cuSPARSE and Sputnik
 
-Requirements:
+Total time includes H2D, GPU format preparation and computation. Results use ten measured runs after two warm-ups; error bars show sample standard deviation. Each panel starts at zero and uses its own scale.
 
-- NVIDIA GPU
-- CUDA 12 or later
-- C++17
-- Python 3 for the paper-scale table script
+![P100 total latency for BiSp2D, cuSPARSE and Sputnik on Criteo, MSWeb and MovieLens configurations](docs/images/p100_comparison.png)
 
-```bash
-make
+Across these three configurations, BiSp2D achieves **1.83–3.16×** speedup over cuSPARSE and **1.47–1.76×** over Sputnik. The plotted Sputnik baseline is the **integer-adapted implementation** used in the experiment.
+
+The figures use recorded baseline experiments, separate from the random-input benchmark below. P100 feature dimensions are shown in the panel titles and differ from `datasets.csv`. See [comparison data and timing definitions](docs/results/README.md).
+
+## How it works
+
+```text
+Binary input V (int8_t)
+    -> H2D transfer + Build_BaSC (64-bit packing)
+    -> BaSC-GEMM (AND + bit count, symmetric output)
+    -> Co-occurrence counts C = V^T V
 ```
 
-The default build targets `sm_80`.
+## Quick start
 
-## Run
+Requires an NVIDIA GPU, CUDA 12 or later, a C++17-capable host compiler, and Python 3. The default build targets `sm_80`.
 
 ```bash
+git clone https://github.com/ccsky37/BiSp2D.git
+cd BiSp2D
 ./run.sh 5 5
 ```
 
-The two arguments are the warm-up and measured-run counts. The script builds BiSp2D, generates all nine random binary matrices listed in `datasets.csv`, and prints one Markdown table.
+This builds the executable and runs all nine configurations in [datasets.csv](datasets.csv), with five warm-ups and five measured runs. It generates random binary inputs with a fixed seed and prints a timing table.
 
-To run one custom matrix configuration, invoke the executable directly:
+## Data and timing
 
-```bash
-./build/bisp2d [rows] [cols] [sparsity_percent] [g] [warmups] [runs] [counter]
-```
+[datasets.csv](datasets.csv) records the nine dataset names, dimensions and sparsity settings. The supplied benchmark generates random matrices at those settings; it does not load or redistribute the original datasets.
 
-`g=0` selects the default warp-based BaSC builder. Values `1`, `2`, `4`, `8`, `16`, and `32` select the grouped builder with the corresponding sub-vector group size.
+Original dataset sources: [Amazon Reviews 2023](https://amazon-reviews-2023.github.io/main.html), [Criteo](https://ailab.criteo.com/ressources/), [MSWeb](https://kdd.ics.uci.edu/databases/msweb/msweb.html), and [MovieLens](https://grouplens.org/datasets/movielens/).
 
-The default `counter=native` path uses `__popcll()`. For sparsity greater than 99%, it also skips all-zero operand groups. `counter=software` retains the data-dependent software single-bit counter while using the same sparsity-controlled zero-skipping rule.
+For application data, prepare a row-major `int8_t` matrix containing only 0 and 1 and call [runBiSp2D()](include/bisp2d.cuh).
 
-The reported GPU total covers H2D transfer, BaSC construction, and BaSC-GEMM. Random input generation and result validation are excluded from timing.
+| Output | What it measures |
+|---|---|
+| H2D | Dense binary input transfer to the GPU. |
+| Build BaSC | GPU construction of the packed representation. |
+| BaSC-GEMM | Co-occurrence computation on the packed representation. |
+| Device-side Work | Build BaSC + BaSC-GEMM. |
+| GPU Total | Independently timed H2D-to-computation completion window. |
 
-## A100 results
+Input generation and validation are excluded. H2D and BaSC construction overlap across four CUDA streams, so the total need not equal the sum of the component timings.
 
-NVIDIA A100 PCIe 40 GB, CUDA 12.4, `g=4`, five warm-up runs, and five measured runs:
+<details>
+<summary>Previously recorded A100 random-input benchmark</summary>
+
+A100 PCIe 40 GB, CUDA 12.4, `g=4`, five warm-ups and five measured runs. This separate benchmark is not used in the comparison figures above.
 
 | Dataset | Instances | Features | Sparsity | H2D (ms) | Device-side Work (ms) | Total (ms) |
 |---|---:|---:|---:|---:|---:|---:|
@@ -68,6 +80,20 @@ NVIDIA A100 PCIe 40 GB, CUDA 12.4, `g=4`, five warm-up runs, and five measured r
 | MSWeb | 37,728 | 288 | 98.95% | 0.952 | 0.132 | 1.077 |
 | MovieLens | 50,000 | 2,000 | 99.71% | 8.309 | 1.279 | 9.576 |
 
-H2D and Build BaSC overlap across four CUDA streams. GPU Total is measured on the critical path and is not the arithmetic sum of the separately reported phase values.
+</details>
 
-`Device-side Work` is Build BaSC plus BaSC-GEMM. These measurements use generated random inputs and therefore are paper-scale implementation checks, not replacements for results measured with the original datasets.
+## Repository
+
+| Path | Contents |
+|---|---|
+| [src/](src/) | BiSp2D implementation and random-input executable. |
+| [include/bisp2d.cuh](include/bisp2d.cuh) | Public API and timing structures. |
+| [bench.py](bench.py), [run.sh](run.sh) | Nine-configuration benchmark runner. |
+| [docs/results/](docs/results/) | Archived comparison data and provenance. |
+| [docs/plot_results.py](docs/plot_results.py) | Regenerates the README comparison figures. |
+
+External baseline implementations and their GPU experiment harnesses are not bundled. The figures can be regenerated from the included data without a GPU.
+
+## License
+
+[MIT](LICENSE).

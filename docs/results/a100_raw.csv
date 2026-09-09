@@ -1,0 +1,181 @@
+dataset,token,rows,cols,target_sparsity_pct,actual_sparsity_pct,method,run,h2d_ms,build_kernel_ms,compute_kernel_ms,gpu_total_ms,raw_log
+Amazon Fashion,amazon_fashion,2035520,512,99.76,99.8046875,cuBLASLt INT8 baseline,1,84.83789,52.78976,20.40627,158.03394,amazon_fashion.log
+Amazon Fashion,amazon_fashion,2035520,512,99.76,99.8046875,CUTLASS INT8 GEMM baseline,1,84.81104,52.75722,105.07674,242.645,amazon_fashion.log
+Amazon Fashion,amazon_fashion,2035520,512,99.76,99.8046875,cuSPARSE SpMM baseline,1,84.77475,65.56624,1.7623,152.10329,amazon_fashion.log
+Amazon Fashion,amazon_fashion,2035520,512,99.76,99.8046875,BiSp2D baseline,1,85.79539,0.30586,8.21862,94.62682,amazon_fashion.log
+Amazon Fashion,amazon_fashion,2035520,512,99.76,99.8046875,cuBLASLt INT8 baseline,2,84.76406,52.74582,20.39398,157.90387,amazon_fashion.log
+Amazon Fashion,amazon_fashion,2035520,512,99.76,99.8046875,CUTLASS INT8 GEMM baseline,2,84.77065,52.75971,105.14022,242.67059,amazon_fashion.log
+Amazon Fashion,amazon_fashion,2035520,512,99.76,99.8046875,cuSPARSE SpMM baseline,2,84.78742,65.60048,1.7623,152.15021,amazon_fashion.log
+Amazon Fashion,amazon_fashion,2035520,512,99.76,99.8046875,BiSp2D baseline,2,85.79795,0.30176,8.2176,94.336,amazon_fashion.log
+Amazon Fashion,amazon_fashion,2035520,512,99.76,99.8046875,cuBLASLt INT8 baseline,3,84.89357,52.7648,20.42573,158.08411,amazon_fashion.log
+Amazon Fashion,amazon_fashion,2035520,512,99.76,99.8046875,CUTLASS INT8 GEMM baseline,3,84.99293,52.75863,105.10848,242.86005,amazon_fashion.log
+Amazon Fashion,amazon_fashion,2035520,512,99.76,99.8046875,cuSPARSE SpMM baseline,3,84.84675,65.69865,1.7623,152.30771,amazon_fashion.log
+Amazon Fashion,amazon_fashion,2035520,512,99.76,99.8046875,BiSp2D baseline,3,85.80797,0.31398,8.20736,94.33395,amazon_fashion.log
+Amazon Fashion,amazon_fashion,2035520,512,99.76,99.8046875,cuBLASLt INT8 baseline,4,84.93594,52.77158,20.42368,158.1312,amazon_fashion.log
+Amazon Fashion,amazon_fashion,2035520,512,99.76,99.8046875,CUTLASS INT8 GEMM baseline,4,84.95434,52.75114,105.15149,242.85696,amazon_fashion.log
+Amazon Fashion,amazon_fashion,2035520,512,99.76,99.8046875,cuSPARSE SpMM baseline,4,84.87862,65.57465,1.76128,152.21456,amazon_fashion.log
+Amazon Fashion,amazon_fashion,2035520,512,99.76,99.8046875,BiSp2D baseline,4,85.82554,0.31005,8.21248,94.34726,amazon_fashion.log
+Amazon Fashion,amazon_fashion,2035520,512,99.76,99.8046875,cuBLASLt INT8 baseline,5,84.83533,52.75034,20.42982,158.01549,amazon_fashion.log
+Amazon Fashion,amazon_fashion,2035520,512,99.76,99.8046875,CUTLASS INT8 GEMM baseline,5,84.85251,52.74953,105.10745,242.7095,amazon_fashion.log
+Amazon Fashion,amazon_fashion,2035520,512,99.76,99.8046875,cuSPARSE SpMM baseline,5,85.05527,65.57968,1.76333,152.39828,amazon_fashion.log
+Amazon Fashion,amazon_fashion,2035520,512,99.76,99.8046875,BiSp2D baseline,5,85.85277,0.31213,8.21146,94.37798,amazon_fashion.log
+Beauty & Personal Care,beauty_personal_care,2000000,1024,99.66,99.70703125,cuBLASLt INT8 baseline,1,168.44995,103.0657,70.2249,341.74054,beauty_personal_care.log
+Beauty & Personal Care,beauty_personal_care,2000000,1024,99.66,99.70703125,CUTLASS INT8 GEMM baseline,1,168.59418,103.86355,104.27699,376.73474,beauty_personal_care.log
+Beauty & Personal Care,beauty_personal_care,2000000,1024,99.66,99.70703125,cuSPARSE SpMM baseline,1,168.54198,151.4832,9.74541,329.77059,beauty_personal_care.log
+Beauty & Personal Care,beauty_personal_care,2000000,1024,99.66,99.70703125,BiSp2D baseline,1,170.12086,1.01162,22.15834,193.31277,beauty_personal_care.log
+Beauty & Personal Care,beauty_personal_care,2000000,1024,99.66,99.70703125,cuBLASLt INT8 baseline,2,168.51082,130.44086,69.82861,368.78027,beauty_personal_care.log
+Beauty & Personal Care,beauty_personal_care,2000000,1024,99.66,99.70703125,CUTLASS INT8 GEMM baseline,2,168.58339,130.28329,104.27802,403.14471,beauty_personal_care.log
+Beauty & Personal Care,beauty_personal_care,2000000,1024,99.66,99.70703125,cuSPARSE SpMM baseline,2,168.51047,165.29916,9.75155,343.56118,beauty_personal_care.log
+Beauty & Personal Care,beauty_personal_care,2000000,1024,99.66,99.70703125,BiSp2D baseline,2,169.99869,1.01514,20.44928,191.47879,beauty_personal_care.log
+Beauty & Personal Care,beauty_personal_care,2000000,1024,99.66,99.70703125,cuBLASLt INT8 baseline,3,168.4886,143.40028,69.83475,381.72363,beauty_personal_care.log
+Beauty & Personal Care,beauty_personal_care,2000000,1024,99.66,99.70703125,CUTLASS INT8 GEMM baseline,3,168.47159,126.93808,109.01607,404.42572,beauty_personal_care.log
+Beauty & Personal Care,beauty_personal_care,2000000,1024,99.66,99.70703125,cuSPARSE SpMM baseline,3,168.63184,123.12963,9.74336,301.50483,beauty_personal_care.log
+Beauty & Personal Care,beauty_personal_care,2000000,1024,99.66,99.70703125,BiSp2D baseline,3,170.00604,1.01654,12.25523,182.86285,beauty_personal_care.log
+Beauty & Personal Care,beauty_personal_care,2000000,1024,99.66,99.70703125,cuBLASLt INT8 baseline,4,168.60477,119.41776,69.79993,357.82245,beauty_personal_care.log
+Beauty & Personal Care,beauty_personal_care,2000000,1024,99.66,99.70703125,CUTLASS INT8 GEMM baseline,4,168.65584,126.92688,108.86963,404.45233,beauty_personal_care.log
+Beauty & Personal Care,beauty_personal_care,2000000,1024,99.66,99.70703125,cuSPARSE SpMM baseline,4,168.9688,126.45702,9.74438,305.1702,beauty_personal_care.log
+Beauty & Personal Care,beauty_personal_care,2000000,1024,99.66,99.70703125,BiSp2D baseline,4,170.09674,1.01837,21.72928,192.83457,beauty_personal_care.log
+Beauty & Personal Care,beauty_personal_care,2000000,1024,99.66,99.70703125,cuBLASLt INT8 baseline,5,168.79239,138.13831,70.25152,377.18222,beauty_personal_care.log
+Beauty & Personal Care,beauty_personal_care,2000000,1024,99.66,99.70703125,CUTLASS INT8 GEMM baseline,5,168.46938,102.74829,104.26982,375.48749,beauty_personal_care.log
+Beauty & Personal Care,beauty_personal_care,2000000,1024,99.66,99.70703125,cuSPARSE SpMM baseline,5,168.40282,165.56892,9.74336,343.7151,beauty_personal_care.log
+Beauty & Personal Care,beauty_personal_care,2000000,1024,99.66,99.70703125,BiSp2D baseline,5,169.93239,1.0225,22.13786,193.10183,beauty_personal_care.log
+"Clothing, Shoes & Jewelry",clothing_shoes_jewelry,1516928,2048,99.68,99.658203125,cuBLASLt INT8 baseline,1,254.18723,148.27037,211.84102,614.29858,clothing_shoes_jewelry.log
+"Clothing, Shoes & Jewelry",clothing_shoes_jewelry,1516928,2048,99.68,99.658203125,CUTLASS INT8 GEMM baseline,1,254.16249,148.035,226.83751,629.03503,clothing_shoes_jewelry.log
+"Clothing, Shoes & Jewelry",clothing_shoes_jewelry,1516928,2048,99.68,99.658203125,cuSPARSE SpMM baseline,1,254.29689,164.38637,27.66643,446.34969,clothing_shoes_jewelry.log
+"Clothing, Shoes & Jewelry",clothing_shoes_jewelry,1516928,2048,99.68,99.658203125,BiSp2D baseline,1,256.58017,1.51725,29.87418,287.3559,clothing_shoes_jewelry.log
+"Clothing, Shoes & Jewelry",clothing_shoes_jewelry,1516928,2048,99.68,99.658203125,cuBLASLt INT8 baseline,2,254.2704,161.19302,210.85184,626.31531,clothing_shoes_jewelry.log
+"Clothing, Shoes & Jewelry",clothing_shoes_jewelry,1516928,2048,99.68,99.658203125,CUTLASS INT8 GEMM baseline,2,254.22896,145.06038,226.42586,625.71521,clothing_shoes_jewelry.log
+"Clothing, Shoes & Jewelry",clothing_shoes_jewelry,1516928,2048,99.68,99.658203125,cuSPARSE SpMM baseline,2,254.35052,164.01517,27.66746,446.03315,clothing_shoes_jewelry.log
+"Clothing, Shoes & Jewelry",clothing_shoes_jewelry,1516928,2048,99.68,99.658203125,BiSp2D baseline,2,256.76035,1.51917,37.61152,295.90733,clothing_shoes_jewelry.log
+"Clothing, Shoes & Jewelry",clothing_shoes_jewelry,1516928,2048,99.68,99.658203125,cuBLASLt INT8 baseline,3,254.32042,144.60234,210.89177,609.81451,clothing_shoes_jewelry.log
+"Clothing, Shoes & Jewelry",clothing_shoes_jewelry,1516928,2048,99.68,99.658203125,CUTLASS INT8 GEMM baseline,3,254.32509,145.03082,226.51392,625.86981,clothing_shoes_jewelry.log
+"Clothing, Shoes & Jewelry",clothing_shoes_jewelry,1516928,2048,99.68,99.658203125,cuSPARSE SpMM baseline,3,254.67757,164.17865,27.66848,446.5247,clothing_shoes_jewelry.log
+"Clothing, Shoes & Jewelry",clothing_shoes_jewelry,1516928,2048,99.68,99.658203125,BiSp2D baseline,3,256.60123,1.51974,29.63968,287.13678,clothing_shoes_jewelry.log
+"Clothing, Shoes & Jewelry",clothing_shoes_jewelry,1516928,2048,99.68,99.658203125,cuBLASLt INT8 baseline,4,254.79129,149.21664,211.37202,615.37994,clothing_shoes_jewelry.log
+"Clothing, Shoes & Jewelry",clothing_shoes_jewelry,1516928,2048,99.68,99.658203125,CUTLASS INT8 GEMM baseline,4,254.13658,144.86502,226.64807,625.64966,clothing_shoes_jewelry.log
+"Clothing, Shoes & Jewelry",clothing_shoes_jewelry,1516928,2048,99.68,99.658203125,cuSPARSE SpMM baseline,4,254.16167,164.57945,27.66541,446.40653,clothing_shoes_jewelry.log
+"Clothing, Shoes & Jewelry",clothing_shoes_jewelry,1516928,2048,99.68,99.658203125,BiSp2D baseline,4,256.73926,1.52358,31.05178,289.3312,clothing_shoes_jewelry.log
+"Clothing, Shoes & Jewelry",clothing_shoes_jewelry,1516928,2048,99.68,99.658203125,cuBLASLt INT8 baseline,5,254.42311,147.43443,211.52972,613.38727,clothing_shoes_jewelry.log
+"Clothing, Shoes & Jewelry",clothing_shoes_jewelry,1516928,2048,99.68,99.658203125,CUTLASS INT8 GEMM baseline,5,254.29462,144.60048,226.95937,625.85443,clothing_shoes_jewelry.log
+"Clothing, Shoes & Jewelry",clothing_shoes_jewelry,1516928,2048,99.68,99.658203125,cuSPARSE SpMM baseline,5,254.08841,164.34288,27.66746,446.09875,clothing_shoes_jewelry.log
+"Clothing, Shoes & Jewelry",clothing_shoes_jewelry,1516928,2048,99.68,99.658203125,BiSp2D baseline,5,256.67566,1.52054,37.3248,295.5397,clothing_shoes_jewelry.log
+Amazon Subscription Boxes,amazon_subscription_boxes,15264,128,99.18,99.21875,cuBLASLt INT8 baseline,1,0.18592,0.08134,0.12083,0.3881,amazon_subscription_boxes.log
+Amazon Subscription Boxes,amazon_subscription_boxes,15264,128,99.18,99.21875,CUTLASS INT8 GEMM baseline,1,0.18637,0.08192,0.77824,1.04653,amazon_subscription_boxes.log
+Amazon Subscription Boxes,amazon_subscription_boxes,15264,128,99.18,99.21875,cuSPARSE SpMM baseline,1,0.18349,0.18298,0.02253,0.38899,amazon_subscription_boxes.log
+Amazon Subscription Boxes,amazon_subscription_boxes,15264,128,99.18,99.21875,BiSp2D baseline,1,0.21056,0.02285,0.09216,0.33587,amazon_subscription_boxes.log
+Amazon Subscription Boxes,amazon_subscription_boxes,15264,128,99.18,99.21875,cuBLASLt INT8 baseline,2,0.18387,0.0793,0.10957,0.37274,amazon_subscription_boxes.log
+Amazon Subscription Boxes,amazon_subscription_boxes,15264,128,99.18,99.21875,CUTLASS INT8 GEMM baseline,2,0.18835,0.08096,0.77926,1.04858,amazon_subscription_boxes.log
+Amazon Subscription Boxes,amazon_subscription_boxes,15264,128,99.18,99.21875,cuSPARSE SpMM baseline,2,0.1855,0.17827,0.0215,0.38528,amazon_subscription_boxes.log
+Amazon Subscription Boxes,amazon_subscription_boxes,15264,128,99.18,99.21875,BiSp2D baseline,2,0.21238,0.02368,0.09114,0.32973,amazon_subscription_boxes.log
+Amazon Subscription Boxes,amazon_subscription_boxes,15264,128,99.18,99.21875,cuBLASLt INT8 baseline,3,0.18266,0.08051,0.09626,0.35942,amazon_subscription_boxes.log
+Amazon Subscription Boxes,amazon_subscription_boxes,15264,128,99.18,99.21875,CUTLASS INT8 GEMM baseline,3,0.18378,0.08144,0.77926,1.04448,amazon_subscription_boxes.log
+Amazon Subscription Boxes,amazon_subscription_boxes,15264,128,99.18,99.21875,cuSPARSE SpMM baseline,3,0.18291,0.17878,0.02253,0.38422,amazon_subscription_boxes.log
+Amazon Subscription Boxes,amazon_subscription_boxes,15264,128,99.18,99.21875,BiSp2D baseline,3,0.20928,0.02579,0.09011,0.32666,amazon_subscription_boxes.log
+Amazon Subscription Boxes,amazon_subscription_boxes,15264,128,99.18,99.21875,cuBLASLt INT8 baseline,4,0.18624,0.07898,0.18842,0.45363,amazon_subscription_boxes.log
+Amazon Subscription Boxes,amazon_subscription_boxes,15264,128,99.18,99.21875,CUTLASS INT8 GEMM baseline,4,0.18534,0.08499,0.77824,1.04858,amazon_subscription_boxes.log
+Amazon Subscription Boxes,amazon_subscription_boxes,15264,128,99.18,99.21875,cuSPARSE SpMM baseline,4,0.18506,0.18083,0.02253,0.38842,amazon_subscription_boxes.log
+Amazon Subscription Boxes,amazon_subscription_boxes,15264,128,99.18,99.21875,BiSp2D baseline,4,0.20867,0.0239,0.09114,0.33075,amazon_subscription_boxes.log
+Amazon Subscription Boxes,amazon_subscription_boxes,15264,128,99.18,99.21875,cuBLASLt INT8 baseline,5,0.18714,0.08013,0.10035,0.36762,amazon_subscription_boxes.log
+Amazon Subscription Boxes,amazon_subscription_boxes,15264,128,99.18,99.21875,CUTLASS INT8 GEMM baseline,5,0.18819,0.0801,0.77824,1.04653,amazon_subscription_boxes.log
+Amazon Subscription Boxes,amazon_subscription_boxes,15264,128,99.18,99.21875,cuSPARSE SpMM baseline,5,0.57936,0.17837,0.0215,0.77923,amazon_subscription_boxes.log
+Amazon Subscription Boxes,amazon_subscription_boxes,15264,128,99.18,99.21875,BiSp2D baseline,5,0.20762,0.02106,0.09114,0.32563,amazon_subscription_boxes.log
+Appliances,appliances,89664,160,99.38,99.375,cuBLASLt INT8 baseline,1,1.24467,0.86682,0.35738,2.46886,appliances.log
+Appliances,appliances,89664,160,99.38,99.375,CUTLASS INT8 GEMM baseline,1,1.23261,0.8625,7.03898,9.13408,appliances.log
+Appliances,appliances,89664,160,99.38,99.375,cuSPARSE SpMM baseline,1,1.24362,1.30963,0.06246,2.61571,appliances.log
+Appliances,appliances,89664,160,99.38,99.375,BiSp2D baseline,1,1.26349,0.0287,0.65843,1.9671,appliances.log
+Appliances,appliances,89664,160,99.38,99.375,cuBLASLt INT8 baseline,2,1.23046,0.86771,0.35738,2.45555,appliances.log
+Appliances,appliances,89664,160,99.38,99.375,CUTLASS INT8 GEMM baseline,2,1.23379,0.8777,7.03898,9.15046,appliances.log
+Appliances,appliances,89664,160,99.38,99.375,cuSPARSE SpMM baseline,2,1.2345,1.30618,0.06246,2.60314,appliances.log
+Appliances,appliances,89664,160,99.38,99.375,BiSp2D baseline,2,1.2729,0.02883,0.65638,1.97325,appliances.log
+Appliances,appliances,89664,160,99.38,99.375,cuBLASLt INT8 baseline,3,1.22762,0.87158,0.35738,2.45658,appliances.log
+Appliances,appliances,89664,160,99.38,99.375,CUTLASS INT8 GEMM baseline,3,1.23613,0.86614,7.03795,9.14022,appliances.log
+Appliances,appliances,89664,160,99.38,99.375,cuSPARSE SpMM baseline,3,1.23706,1.30566,0.06246,2.60518,appliances.log
+Appliances,appliances,89664,160,99.38,99.375,BiSp2D baseline,3,1.26675,0.03562,0.65741,1.96813,appliances.log
+Appliances,appliances,89664,160,99.38,99.375,cuBLASLt INT8 baseline,4,1.24432,0.86819,0.35738,2.46989,appliances.log
+Appliances,appliances,89664,160,99.38,99.375,CUTLASS INT8 GEMM baseline,4,1.24176,0.87178,7.03795,9.15149,appliances.log
+Appliances,appliances,89664,160,99.38,99.375,cuSPARSE SpMM baseline,4,1.23018,1.2929,0.06246,2.58554,appliances.log
+Appliances,appliances,89664,160,99.38,99.375,BiSp2D baseline,4,1.29117,0.03968,0.65741,1.98861,appliances.log
+Appliances,appliances,89664,160,99.38,99.375,cuBLASLt INT8 baseline,5,1.24656,0.86698,0.35738,2.47091,appliances.log
+Appliances,appliances,89664,160,99.38,99.375,CUTLASS INT8 GEMM baseline,5,1.29245,0.86922,7.03795,9.19962,appliances.log
+Appliances,appliances,89664,160,99.38,99.375,cuSPARSE SpMM baseline,5,1.43395,1.30416,0.06246,2.80058,appliances.log
+Appliances,appliances,89664,160,99.38,99.375,BiSp2D baseline,5,1.28054,0.03562,0.65638,1.97837,appliances.log
+Beauty & Personal Care (meta),beauty_personal_care_meta,926048,704,99.86,99.85795454545455,cuBLASLt INT8 baseline,1,55.17751,27.46442,14.48243,97.12435,beauty_personal_care_meta.log
+Beauty & Personal Care (meta),beauty_personal_care_meta,926048,704,99.86,99.85795454545455,CUTLASS INT8 GEMM baseline,1,57.44073,40.7793,63.99795,162.21799,beauty_personal_care_meta.log
+Beauty & Personal Care (meta),beauty_personal_care_meta,926048,704,99.86,99.85795454545455,cuSPARSE SpMM baseline,1,55.45158,33.57466,1.0025,90.02874,beauty_personal_care_meta.log
+Beauty & Personal Care (meta),beauty_personal_care_meta,926048,704,99.86,99.85795454545455,BiSp2D baseline,1,55.6951,0.21574,3.31878,59.23635,beauty_personal_care_meta.log
+Beauty & Personal Care (meta),beauty_personal_care_meta,926048,704,99.86,99.85795454545455,cuBLASLt INT8 baseline,2,55.43149,44.28256,23.22739,122.94144,beauty_personal_care_meta.log
+Beauty & Personal Care (meta),beauty_personal_care_meta,926048,704,99.86,99.85795454545455,CUTLASS INT8 GEMM baseline,2,55.31689,27.47862,48.03789,130.8334,beauty_personal_care_meta.log
+Beauty & Personal Care (meta),beauty_personal_care_meta,926048,704,99.86,99.85795454545455,cuSPARSE SpMM baseline,2,55.26499,33.5407,1.00147,89.80717,beauty_personal_care_meta.log
+Beauty & Personal Care (meta),beauty_personal_care_meta,926048,704,99.86,99.85795454545455,BiSp2D baseline,2,55.64419,0.21312,3.31878,59.17798,beauty_personal_care_meta.log
+Beauty & Personal Care (meta),beauty_personal_care_meta,926048,704,99.86,99.85795454545455,cuBLASLt INT8 baseline,3,55.30486,27.46813,14.47731,97.25031,beauty_personal_care_meta.log
+Beauty & Personal Care (meta),beauty_personal_care_meta,926048,704,99.86,99.85795454545455,CUTLASS INT8 GEMM baseline,3,55.1736,27.4632,48.01741,130.65421,beauty_personal_care_meta.log
+Beauty & Personal Care (meta),beauty_personal_care_meta,926048,704,99.86,99.85795454545455,cuSPARSE SpMM baseline,3,57.38109,33.56579,1.00352,91.9504,beauty_personal_care_meta.log
+Beauty & Personal Care (meta),beauty_personal_care_meta,926048,704,99.86,99.85795454545455,BiSp2D baseline,3,55.68887,0.3079,5.1497,61.14509,beauty_personal_care_meta.log
+Beauty & Personal Care (meta),beauty_personal_care_meta,926048,704,99.86,99.85795454545455,cuBLASLt INT8 baseline,4,55.39142,50.35808,26.4151,132.16461,beauty_personal_care_meta.log
+Beauty & Personal Care (meta),beauty_personal_care_meta,926048,704,99.86,99.85795454545455,CUTLASS INT8 GEMM baseline,4,55.30038,27.47466,48.03277,130.8078,beauty_personal_care_meta.log
+Beauty & Personal Care (meta),beauty_personal_care_meta,926048,704,99.86,99.85795454545455,cuSPARSE SpMM baseline,4,55.20544,33.85517,1.00147,90.06208,beauty_personal_care_meta.log
+Beauty & Personal Care (meta),beauty_personal_care_meta,926048,704,99.86,99.85795454545455,BiSp2D baseline,4,55.50429,0.2048,3.31469,59.04486,beauty_personal_care_meta.log
+Beauty & Personal Care (meta),beauty_personal_care_meta,926048,704,99.86,99.85795454545455,cuBLASLt INT8 baseline,5,55.01747,27.47802,14.48243,96.97791,beauty_personal_care_meta.log
+Beauty & Personal Care (meta),beauty_personal_care_meta,926048,704,99.86,99.85795454545455,CUTLASS INT8 GEMM baseline,5,55.06339,27.46794,48.03277,130.56409,beauty_personal_care_meta.log
+Beauty & Personal Care (meta),beauty_personal_care_meta,926048,704,99.86,99.85795454545455,cuSPARSE SpMM baseline,5,54.96646,33.57302,1.00352,89.54301,beauty_personal_care_meta.log
+Beauty & Personal Care (meta),beauty_personal_care_meta,926048,704,99.86,99.85795454545455,BiSp2D baseline,5,55.62682,0.2128,3.31878,59.16467,beauty_personal_care_meta.log
+Criteo,criteo,200000,224,88.39,88.39285714285714,cuBLASLt INT8 baseline,1,3.88611,3.03306,0.91238,7.83155,criteo.log
+Criteo,criteo,200000,224,88.39,88.39285714285714,CUTLASS INT8 GEMM baseline,1,3.89642,3.03709,17.77357,24.70707,criteo.log
+Criteo,criteo,200000,224,88.39,88.39285714285714,cuSPARSE SpMM baseline,1,3.89418,5.63309,3.28806,12.81533,criteo.log
+Criteo,criteo,200000,224,88.39,88.39285714285714,BiSp2D baseline,1,3.92522,0.04803,1.05165,5.04422,criteo.log
+Criteo,criteo,200000,224,88.39,88.39285714285714,cuBLASLt INT8 baseline,2,3.87376,3.03005,0.91443,7.81824,criteo.log
+Criteo,criteo,200000,224,88.39,88.39285714285714,CUTLASS INT8 GEMM baseline,2,3.87347,3.05286,18.46886,25.3952,criteo.log
+Criteo,criteo,200000,224,88.39,88.39285714285714,cuSPARSE SpMM baseline,2,3.88346,5.64131,3.29626,12.82102,criteo.log
+Criteo,criteo,200000,224,88.39,88.39285714285714,BiSp2D baseline,2,3.96627,0.04726,1.05062,5.0729,criteo.log
+Criteo,criteo,200000,224,88.39,88.39285714285714,cuBLASLt INT8 baseline,3,3.88298,3.04131,0.91443,7.83872,criteo.log
+Criteo,criteo,200000,224,88.39,88.39285714285714,CUTLASS INT8 GEMM baseline,3,3.89238,3.05955,18.47091,25.42285,criteo.log
+Criteo,criteo,200000,224,88.39,88.39285714285714,cuSPARSE SpMM baseline,3,3.89965,5.65338,3.28294,12.83597,criteo.log
+Criteo,criteo,200000,224,88.39,88.39285714285714,BiSp2D baseline,3,3.95101,0.05258,1.05165,5.06675,criteo.log
+Criteo,criteo,200000,224,88.39,88.39285714285714,cuBLASLt INT8 baseline,4,3.88496,3.06595,0.90419,7.8551,criteo.log
+Criteo,criteo,200000,224,88.39,88.39285714285714,CUTLASS INT8 GEMM baseline,4,3.9241,3.04013,18.46989,25.43411,criteo.log
+Criteo,criteo,200000,224,88.39,88.39285714285714,cuSPARSE SpMM baseline,4,3.88522,5.6488,3.28704,12.82106,criteo.log
+Criteo,criteo,200000,224,88.39,88.39285714285714,BiSp2D baseline,4,3.93917,0.04416,1.05165,5.04832,criteo.log
+Criteo,criteo,200000,224,88.39,88.39285714285714,cuBLASLt INT8 baseline,5,3.86762,3.0536,0.91955,7.84077,criteo.log
+Criteo,criteo,200000,224,88.39,88.39285714285714,CUTLASS INT8 GEMM baseline,5,3.86762,3.0536,18.46579,25.38701,criteo.log
+Criteo,criteo,200000,224,88.39,88.39285714285714,cuSPARSE SpMM baseline,5,3.90234,5.65523,3.29114,12.8487,criteo.log
+Criteo,criteo,200000,224,88.39,88.39285714285714,BiSp2D baseline,5,4.22474,0.05494,1.05779,5.47226,criteo.log
+MSWeb,msweb,37728,288,98.95,98.95833333333334,cuBLASLt INT8 baseline,1,0.93898,0.70352,0.29798,1.94048,msweb.log
+MSWeb,msweb,37728,288,98.95,98.95833333333334,CUTLASS INT8 GEMM baseline,1,0.92986,0.71059,3.49389,5.13434,msweb.log
+MSWeb,msweb,37728,288,98.95,98.95833333333334,cuSPARSE SpMM baseline,1,1.03133,1.0159,0.09626,2.14349,msweb.log
+MSWeb,msweb,37728,288,98.95,98.95833333333334,BiSp2D baseline,1,0.99261,0.04,0.20787,1.24211,msweb.log
+MSWeb,msweb,37728,288,98.95,98.95833333333334,cuBLASLt INT8 baseline,2,0.9465,0.70829,0.30003,1.95482,msweb.log
+MSWeb,msweb,37728,288,98.95,98.95833333333334,CUTLASS INT8 GEMM baseline,2,0.95338,0.7137,3.49389,5.16096,msweb.log
+MSWeb,msweb,37728,288,98.95,98.95833333333334,cuSPARSE SpMM baseline,2,0.94134,1.02435,0.09523,2.06093,msweb.log
+MSWeb,msweb,37728,288,98.95,98.95833333333334,BiSp2D baseline,2,0.98675,0.04122,0.20992,1.23904,msweb.log
+MSWeb,msweb,37728,288,98.95,98.95833333333334,cuBLASLt INT8 baseline,3,0.93878,0.70883,0.29901,1.94662,msweb.log
+MSWeb,msweb,37728,288,98.95,98.95833333333334,CUTLASS INT8 GEMM baseline,3,0.94864,0.70717,3.49389,5.1497,msweb.log
+MSWeb,msweb,37728,288,98.95,98.95833333333334,cuSPARSE SpMM baseline,3,0.94838,1.02323,0.09626,2.06787,msweb.log
+MSWeb,msweb,37728,288,98.95,98.95833333333334,BiSp2D baseline,3,0.99069,0.03978,0.20685,1.24109,msweb.log
+MSWeb,msweb,37728,288,98.95,98.95833333333334,cuBLASLt INT8 baseline,4,1.15514,0.70138,0.29798,2.1545,msweb.log
+MSWeb,msweb,37728,288,98.95,98.95833333333334,CUTLASS INT8 GEMM baseline,4,0.96026,0.71398,3.49389,5.16813,msweb.log
+MSWeb,msweb,37728,288,98.95,98.95833333333334,cuSPARSE SpMM baseline,4,0.93453,1.02797,0.09523,2.05773,msweb.log
+MSWeb,msweb,37728,288,98.95,98.95833333333334,BiSp2D baseline,4,0.98854,0.03229,0.2089,1.30253,msweb.log
+MSWeb,msweb,37728,288,98.95,98.95833333333334,cuBLASLt INT8 baseline,5,0.94333,0.70429,0.29798,1.9456,msweb.log
+MSWeb,msweb,37728,288,98.95,98.95833333333334,CUTLASS INT8 GEMM baseline,5,0.94349,0.71437,3.49389,5.15174,msweb.log
+MSWeb,msweb,37728,288,98.95,98.95833333333334,cuSPARSE SpMM baseline,5,0.96048,1.03568,0.09626,2.09242,msweb.log
+MSWeb,msweb,37728,288,98.95,98.95833333333334,BiSp2D baseline,5,0.99242,0.03578,0.20992,1.24826,msweb.log
+MovieLens,movielens,50000,2000,99.71,99.7,cuBLASLt INT8 baseline,1,8.81558,4.89168,11.68589,25.39315,movielens.log
+MovieLens,movielens,50000,2000,99.71,99.7,CUTLASS INT8 GEMM baseline,1,8.81754,4.89382,12.21325,25.92461,movielens.log
+MovieLens,movielens,50000,2000,99.71,99.7,cuSPARSE SpMM baseline,1,8.80534,5.88925,0.99328,15.68787,movielens.log
+MovieLens,movielens,50000,2000,99.71,99.7,BiSp2D baseline,1,8.86896,0.08118,1.57901,10.53491,movielens.log
+MovieLens,movielens,50000,2000,99.71,99.7,cuBLASLt INT8 baseline,2,8.76691,4.90861,11.68691,25.36243,movielens.log
+MovieLens,movielens,50000,2000,99.71,99.7,CUTLASS INT8 GEMM baseline,2,8.80848,4.89162,12.21325,25.91335,movielens.log
+MovieLens,movielens,50000,2000,99.71,99.7,cuSPARSE SpMM baseline,2,8.80518,6.23443,1.05882,16.09843,movielens.log
+MovieLens,movielens,50000,2000,99.71,99.7,BiSp2D baseline,2,8.91757,0.08198,1.73978,10.75507,movielens.log
+MovieLens,movielens,50000,2000,99.71,99.7,cuBLASLt INT8 baseline,3,8.85251,5.1896,12.83174,26.87386,movielens.log
+MovieLens,movielens,50000,2000,99.71,99.7,CUTLASS INT8 GEMM baseline,3,8.81946,5.19808,13.40928,27.42682,movielens.log
+MovieLens,movielens,50000,2000,99.71,99.7,cuSPARSE SpMM baseline,3,8.84851,6.228,1.06189,16.1384,movielens.log
+MovieLens,movielens,50000,2000,99.71,99.7,BiSp2D baseline,3,8.89312,0.08208,1.73056,10.71309,movielens.log
+MovieLens,movielens,50000,2000,99.71,99.7,cuBLASLt INT8 baseline,4,8.84301,5.19398,12.83174,26.86874,movielens.log
+MovieLens,movielens,50000,2000,99.71,99.7,CUTLASS INT8 GEMM baseline,4,8.7584,5.18746,13.40928,27.35514,movielens.log
+MovieLens,movielens,50000,2000,99.71,99.7,cuSPARSE SpMM baseline,4,8.83824,6.23258,1.05984,16.13066,movielens.log
+MovieLens,movielens,50000,2000,99.71,99.7,BiSp2D baseline,4,8.85584,0.08858,1.72954,10.69875,movielens.log
+MovieLens,movielens,50000,2000,99.71,99.7,cuBLASLt INT8 baseline,5,8.84083,5.18592,12.83379,26.86054,movielens.log
+MovieLens,movielens,50000,2000,99.71,99.7,CUTLASS INT8 GEMM baseline,5,8.82694,5.19981,13.40928,27.43603,movielens.log
+MovieLens,movielens,50000,2000,99.71,99.7,cuSPARSE SpMM baseline,5,8.81584,6.23267,1.05984,16.10835,movielens.log
+MovieLens,movielens,50000,2000,99.71,99.7,BiSp2D baseline,5,8.9257,0.08246,1.74182,10.75917,movielens.log
